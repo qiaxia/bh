@@ -1,0 +1,44 @@
+{
+  "inbounds": [
+    {
+      "tag": "tuic-in",
+      "type": "tuic",
+      "listen": "::",
+      "listen_port": 62218,
+      "users": [
+        {
+          "uuid": "bc97f674-c578-4940-9234-0a1da46041b9",
+          "password": "password123"
+        }
+      ],
+      "congestion_control": "bbr",
+      "tls": {
+        "enabled": true,
+        "alpn": [
+          "h3"
+        ],
+        "certificate_path": "cert.pem",
+        "key_path": "private.key"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "tuic-out",
+      "type": "tuic",
+      "server": "your.tuic.server",
+      "server_port": 443,
+      "uuid": "bc97f674-c578-4940-9234-0a1da46041b9",
+      "password": "password123",
+      "tls": {
+        "enabled": true,
+        "server_name": "your.tuic.server"
+      },
+      "transport": {
+        "type": "socks",
+        "server": "150.5.135.210",
+        "server_port": 20000
+      }
+    }
+  ]
+}
