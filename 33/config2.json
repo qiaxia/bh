@@ -6,27 +6,28 @@
   },
   "inbounds": [
     {
-      "type": "vmess",
-      "tag": "vmess-in",
-      "listen": "::",
-      "listen_port": 24611,
-      "users": [
-        {
-          "name": "ray",
-          "uuid": "3ecce2de-b6be-4ab8-af40-4dcccfc36bf1"
+        "type": "hysteria2",
+        "tag": "hy2-in",
+        "listen": "0.0.0.0",
+        "listen_port": 24611,
+        "users": [
+          {
+            "name": "hy2",
+            "password": "wjw62"
+          }
+        ],
+        "tls": {
+          "enabled": true,
+          "server_name": "www.bing.com",
+          "alpn": ["h3","h2","http/1.1"],
+          "acme": {
+            "domain": "www.bing.com",
+            "data_directory": "/tls",
+            "default_server_name": "www.bing.com",
+            "email": "wjw62@gmail.com"
+          }
         }
-      ],
-      "multiplex": {
-        "enabled": true
       },
-      "transport": {
-        "type": "ws",
-        "path": "/download",
-        "headers": {
-          "Host": "download.windowsupdate.com"
-        }
-      }
-    },
     {
       "type": "vless",
       "tag": "reality-in",
