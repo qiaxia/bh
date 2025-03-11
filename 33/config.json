@@ -4,7 +4,7 @@
       "tag": "hysteria-in",
       "type": "hysteria2",
       "listen": "::",
-      "listen_port": 24612,
+      "listen_port": 24613,
       "users": [
         {
           "password": "bc97f674-c578-4940-9234-0a1da46041b9"
@@ -27,7 +27,7 @@
       "listen_port": 24611,
       "users": [
         {
-          "uuid": "ccc62c8a-7b6c-46e7-8da3-dc144382d317",
+          "uuid": "bc97f674-c578-4940-9234-0a1da46041b9",
           "flow": "xtls-rprx-vision"
         }
       ],
@@ -51,11 +51,11 @@
       "tag": "tuic-in",
       "type": "tuic",
       "listen": "::",
-      "listen_port": 24613,
+      "listen_port": 24612,
       "users": [
         {
-          "uuid": "ccc62c8a-7b6c-46e7-8da3-dc144382d317",
-          "password": "passwordwjw62"
+          "uuid": "bc97f674-c578-4940-9234-0a1da46041b9",
+          "password": "password123"
         }
       ],
       "congestion_control": "bbr",
@@ -73,29 +73,19 @@
     {
       "tag": "tuic-out",
       "type": "tuic",
-      "server": "your.tuic.server", 
-      "server_port": 443, 
-      "uuid": "ccc62c8a-7b6c-46e7-8da3-dc144382d317",
-      "password": "passwordwjw62",
+      "server": "your.tuic.server",
+      "server_port": 443,
+      "uuid": "bc97f674-c578-4940-9234-0a1da46041b9",
+      "password": "password123",
       "tls": {
         "enabled": true,
         "server_name": "your.tuic.server"
+      },
+      "transport": {
+        "type": "socks",
+        "server": "150.5.135.250",
+        "server_port": 20000
       }
-    },
-    {
-      "tag": "socks5-out",
-      "type": "socks",
-      "server": "150.5.132.12",
-      "server_port": 20000
     }
-  ],
-  "routing": {
-    "rules": [
-      {
-        "type": "field",
-        "inbound": ["tuic-in"],
-        "outbound": "socks5-out"
-      }
-    ]
-  }
+  ]
 }
