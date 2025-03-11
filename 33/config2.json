@@ -29,32 +29,6 @@
     },
     {
       "type": "vless",
-      "tag": "reality-in2",
-      "listen": "::",
-      "listen_port": 24613,
-      "users": [
-        {
-          "name": "ray",
-          "uuid": "3ecce2de-b6be-4ab8-af40-4dcccfc36bf1",
-          "flow": "xtls-rprx-vision"
-        }
-      ],
-      "tls": {
-        "enabled": true,
-        "server_name": "addons.mozilla.org",
-        "reality": {
-          "enabled": true,
-          "handshake": {
-            "server": "addons.mozilla.org",
-            "server_port": 443
-          },
-          "private_key": "CKsKunGTO2J_1-yoRGkyVR-fglVQE1hsRgs0cdX4KVQ",
-          "short_id": "c29b577e65fb7fdd"
-        }
-      }
-    },
-    {
-      "type": "vless",
       "tag": "reality-in",
       "listen": "::",
       "listen_port": 24612,
@@ -82,21 +56,5 @@
         "enabled": true
       }
     }
-  ],
-  "outbounds": [
-    {
-      "type": "socks5",
-      "tag": "socks5-out",
-      "server": "150.5.135.243",
-      "server_port": 20000
-    }
-  ],
-  "route": {
-    "rules": [
-      {
-        "inbound": ["reality-in2"],
-        "outbound": "socks5-out"
-      }
-    ]
-  }
+  ]
 }
