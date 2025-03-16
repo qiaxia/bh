@@ -1,71 +1,114 @@
-   "inbounds": [
-   {
-      "tag": "hysteria-in",
-      "type": "hysteria2",
-      "listen": "::",
-      "listen_port": 24613,# 修改为你新建的其中一个udp端口
+{
+  "log": {
+    "level": "info"
+  },
+  "dns": {
+    "servers": [
+      {
+        "address": "tls://8.8.8.8",
+        "detour": "direct"
+      }
+    ]
+  },
+  "inbounds": [
+    {
+      "tag": "tuic-in1",
+      "type": "tuic",
+      "listen": "128.204.223.115",
+      "listen_port": 47666,
       "users": [
         {
-            "password": "bc97f674-c578-4940-9234-0a1da46041b9"# 修改为你自己的uuid
+          "uuid": "cff1ca79-78df-4d3a-aa07-29fa0746c606",
+          "password": "admin123"
         }
-    ],
-    "masquerade": "https://bing.com",
-    "tls": {
+      ],
+      "congestion_control": "bbr",
+      "tls": {
         "enabled": true,
         "alpn": [
-            "h3"
+          "h3"
         ],
         "certificate_path": "cert.pem",
         "key_path": "private.key"
-       }
-   },
-   {
-       "tag": "vless-reality-vesion",
-       "type": "vless",
-       "listen": "::",
-       "listen_port": 24611,# 修改为你自己新建的tcp端口
-       "users": [
-           {
-             "uuid": "bc97f674-c578-4940-9234-0a1da46041b9",# 修改为你自己的uuid
-             "flow": "xtls-rprx-vision"
-           }
-       ],
-       "tls": {
-           "enabled": true,
-           "server_name": "www.ups.com",
-           "reality": {
-               "enabled": true,
-               "handshake": {
-                   "server": "www.ups.com",
-                   "server_port": 443
-               },
-               "private_key": "sFfFeg0jT8e0lWShEserKYernuR66yldmpV1EMPbHkA",
-               "short_id": [
-                 ""
-               ]
-           }
-       }
-   },
-   {
-     "tag": "tuic-in",
-     "type": "tuic",
-     "listen": "::",
-     "listen_port": 24612,# 修改为你新建的另外一个udp端口
-     "users": [
-       {
-         "uuid": "bc97f674-c578-4940-9234-0a1da46041b9",# 修改为你自己的uuid
-         "password": "password123"# 密码，可改可不改
-       }
-     ],
-     "congestion_control": "bbr",
-     "tls": {
-       "enabled": true,
-       "alpn": [
-         "h3"
-       ],
-       "certificate_path": "cert.pem",
-       "key_path": "private.key"
-     }
-   }
-
-],
+      }
+    },
+    {
+      "tag": "tuic-in2",
+      "type": "tuic",
+      "listen": "128.204.223.115",
+      "listen_port": 47667,
+      "users": [
+        {
+          "uuid": "cff1ca79-78df-4d3a-aa07-29fa0746c606",
+          "password": "admin123"
+        }
+      ],
+      "congestion_control": "bbr",
+      "tls": {
+        "enabled": true,
+        "alpn": [
+          "h3"
+        ],
+        "certificate_path": "cert.pem",
+        "key_path": "private.key"
+      }
+    },
+    {
+      "tag": "tuic-in3",
+      "type": "tuic",
+      "listen": "128.204.223.115",
+      "listen_port": 47668,
+      "users": [
+        {
+          "uuid": "cff1ca79-78df-4d3a-aa07-29fa0746c606",
+          "password": "admin123"
+        }
+      ],
+      "congestion_control": "bbr",
+      "tls": {
+        "enabled": true,
+        "alpn": [
+          "h3"
+        ],
+        "certificate_path": "cert.pem",
+        "key_path": "private.key"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+    	"type": "direct",
+    	"tag": "direct"
+    },
+    {
+      "type": "socks",
+      "tag": "socks1",
+      "server": "150.5.135.253",
+      "server_port": 20000,
+      "version": "5",
+    },
+    {
+      "type": "socks",
+      "tag": "socks2",
+      "server": "150.5.132.151",
+      "server_port": 20000,
+      "version": "5",
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": "tuic-in1",
+        "outbound": "direct"
+      },
+      {
+        "inbound": "tuic-in2",
+        "outbound": "socks1"
+      },
+      {
+        "inbound": "tuic-in3",
+        "outbound": "socks2"
+      }
+    ]
+  }
+}
